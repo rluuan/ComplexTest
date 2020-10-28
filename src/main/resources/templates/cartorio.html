@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://open.nimbi.com.br/UIHelper/Theme.FlexBoxHelper.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <title>Orders</title>
+</head>
+<style>
+    html { box-sizing: border-box; }
+    .user-profile {
+        border-left: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    .Header_Left {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .Header_LeftIcon {
+        font-size: 28px;
+        color: #ddd;
+        margin-right: 10px;
+    }
+
+    .Header_Info {
+        display: flex !important;
+        justify-content: center;
+    }
+
+    .Header_Info>div:nth-child(2) {
+        margin-left: 20px;
+        color: #ddd;
+        font-weight: bold;
+    }
+
+    .Header_Info .Header_InfoContent div:nth-child(1) {
+        font-size: 12px
+    }
+
+    .Header_Info .Header_InfoContent div:nth-child(2) {
+        font-size: 23px
+    }
+
+    .Profile_Wrapper {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 0px !important;
+    }
+
+    .Profile_Wrapper span {
+        color: #ddd
+    }
+
+    .navbar {
+        box-shadow: 1px 1px 3px #000;
+        height: 68px !important;
+    }
+
+    .Content_Menu {
+        display: flex;
+        position: relative;
+        height: calc(100vh - 68px);
+    }
+
+    .Content_MenuImg {
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        opacity: 0.1;
+    }
+
+
+    .Content_General {
+        display: flex;
+        /*height: calc(100vh - 68px); */
+        background: #fcf7f7;
+        padding: 20px;
+    }
+
+    .Content_MenuContent {
+        background: rgba(0, 0, 0, 1);
+        width: 100%;
+        color: #fff;
+    }
+
+    .Active {
+        padding: 10px;
+        border-radius: 15px;
+        background: #542f61;
+        transition: all 1s ease;
+    }
+
+    .Content_MenuItems {
+        cursor: pointer;
+        height: 170px;
+        justify-content: space-around;
+    }
+
+    .Content_MenuItems div {
+        align-items: center;
+        display: flex;
+        width: 200px;
+        height: 50px;
+        align-items: center;
+    }
+    .Heading_1 { font-weight: bold; font-size: 21px; }
+    .Filter_Cartorio { margin-top: 20px; }
+    .List_Wrapper {
+        margin-top: 20px;
+        height: 170px;
+        background: #fff;
+        box-shadow: 1px 1px 3px #ddd;
+    }
+    .Input_Theme {
+        border-color: transparent;
+        border-bottom: 1px solid #ddd;
+        width: 100%;
+        background: #fcf7f7;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('.Content_MenuItems div').on('click', function (e) {
+            e.preventDefault();
+            $('.Content_MenuItems div').removeClass('Active');
+            $(this).addClass('Active', 1000);
+
+            console.log($(this).text())
+            if ($(this).text().trim() === 'Cartórios') {
+                document.location.href = '/cartorios/list'
+           } else {
+                document.location.href = '/cartorios/home'
+            }
+        });
+        var path = window.location.pathname;
+        var page = path.split("/").pop();
+        $('.Content_MenuItems div').removeClass('Active');
+        if (page === 'list') {
+            $('.Content_MenuItems div:nth-child(2)').addClass('Active');
+        } else {
+            $('.Content_MenuItems div:nth-child(1)').addClass('Active');
+        }
+    });
+</script>
+
+<body>
+<div style='display: flex; flex-direction:column'>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <div class="container-fluid">
+                <div class='row' style='width: 100%'>
+                    <div class='col-8 col-sm-8 col-lg-4 Header_Left'>
+                        <div class='Header_LeftIcon'>
+                            <i class="fas fa-bars"></i>
+                        </div>
+                        <a class="navbar-brand" href="#" style='color: #ffaf3e; font-weight: bold;'>Shopping de Documentos</a>
+                    </div>
+                    <div class='col-lg-4 d-none d-lg-block d-xl-block'>
+                        <div class='Header_Info'>
+                            <img src="https://www.docket.com.br/img/contato.svg" title='Estamos aqui para ajudar' style='width: 50px'>
+                            <div class='Header_InfoContent'>
+                                <div>docket</div>
+                                <div>Saas</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-4 col-lg-4 col-sm-4 Profile_Wrapper'>
+                        <div class='d-none d-lg-block user-profile'>
+                            <div style="display: flex; justify-content: center;">
+                                    <span>
+                                        <i class="far fa-user"></i>
+                                    </span>
+                                <span style='margin-left: 10px;'>
+                                        Ola, Rodrigo Luan
+                                    </span>
+                            </div>
+                        </div>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div style='flex: 1' class='d-none d-md-block d-lg-block d-xl-block'>
+        <div class='container-fluid'>
+            <div class='row'>
+                <div class='col-3 col-sm-3 col-md-3 col-lg-3 col-xl-2' style='padding: 0px !important;'>
+                    <div class='Content_Menu'>
+                        <img src='https://www.napratica.org.br/wp-content/uploads/2018/09/startup-1024x683.jpg' class='Content_MenuImg img-fluid'></img>
+                        <div class='Content_MenuContent'>
+                            <div style='display: flex; flex-direction: column; align-items: center;'>
+                                <div style='height: 100px; margin-top: 20px; display: flex; align-items: center;'>
+                                    <span> <i class="far fa-file-alt fa-3x"></i></span>
+                                </div>
+                                <div>Docket</div>
+                                <div style='display: flex; justify-content: center; margin-top: 10px;'>
+                                    <div style='background: #00b98e; border-radius: 15px; width: 66px;display: flex; justify-content: center;'>Ativo</div>
+                                    <div style='background: #e65562; border-radius: 15px; margin-left: 10px; width: 66px; display: flex; justify-content: center;'>Danger</div>
+                                </div>
+                                <div style='height: 1px; background: #ddd; width: 90%; margin-top: 20px;' />
+                                <div style='margin-top: 30px'>
+                                    <div style='display: flex; flex-direction: column; align-items: center;'
+                                         class='Content_MenuItems'>
+                                        <div class="Active">
+                                            <div style='width: 80px;'>
+                                                <i class="fas fa-plus-circle fa-2x"></i>
+                                            </div>
+                                            <div th:switch="${cartorios}">
+                                                <a href="/cartorios/home"><span style='font-size: 18px'>Novo Cartório</span></a>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div style='width: 80px;'>
+                                                <i class="far fa-list-alt fa-2x"></i>
+                                            </div>
+                                            <div th:switch="${cartorios}">
+                                                <a href="/cartorios/list"><span style='font-size: 18px'>Cartórios</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> </div>
+            <div class='col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10' style='padding: 0px !important; margin: 0px !important; min-height: 0px !important; background: #fcf7f7;'>
+                <div class='Content_General'>
+                    <div style="border: 1px solid #ddd; padding: 20px; margin-top: 20px; width: 50%" class="hFlex layout vertical">
+                        <div class="hFlex layout vertical">
+                            <h3>Novo cartório</h3>
+                            <form action="#" th:action="@{/cartorios/adicionar}" th:object="${cartorio}" method="post">
+                                <div style="margin-top: 20px">
+                                    <input placeholder="Insira o nome do cartorio" th:field="*{nome}" id="nome" class="Input_Theme">
+                                </div>
+
+                                <div style="margin-top: 40px">
+                                    <input type="text" placeholder="Nome do bairro" th:field="*{bairro}" id="bairro" class="Input_Theme">
+                                </div>
+                                <div style="margin-top: 10px">
+                                    <input type="number" placeholder="Numero" th:field="*{numero}" id="numero" class="Input_Theme">
+                                </div>
+                                <div style="margin-top: 10px">
+                                    <input type="text" placeholder="Nome da rua" th:field="*{rua}" id="rua" class="Input_Theme">
+                                </div>
+                                <div style="margin-top: 20px;">
+                                    <button>Salvar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
