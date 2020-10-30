@@ -138,26 +138,10 @@
 </style>
 <script>
     $(document).ready(function () {
-        $('.Content_MenuItems div').on('click', function (e) {
-            e.preventDefault();
+        $('.Content_MenuItems div a').on('click', function () {
             $('.Content_MenuItems div').removeClass('Active');
-            $(this).addClass('Active', 1000);
-
-            console.log($(this).text())
-            if ($(this).text().trim() === 'Cartórios') {
-                document.location.href = '/cartorios/list'
-           } else {
-                document.location.href = '/cartorios/home'
-            }
+            $('.Content_MenuItems div').addClass('Active', 1000);
         });
-        var path = window.location.pathname;
-        var page = path.split("/").pop();
-        $('.Content_MenuItems div').removeClass('Active');
-        if (page === 'list') {
-            $('.Content_MenuItems div:nth-child(2)').addClass('Active');
-        } else {
-            $('.Content_MenuItems div:nth-child(1)').addClass('Active');
-        }
     });
 </script>
 
@@ -225,20 +209,22 @@
                                     <div style='display: flex; flex-direction: column; align-items: center;'
                                          class='Content_MenuItems'>
                                         <div class="Active">
-                                            <div style='width: 80px;'>
+                                            <div style='width: 60px;'>
                                                 <i class="fas fa-plus-circle fa-2x"></i>
                                             </div>
-                                            <div th:switch="${cartorios}">
-                                                <a href="/cartorios/home"><span style='font-size: 18px'>Novo Cartório</span></a>
-                                            </div>
+                                            <a href="/cartorios/edit"><span style='font-size: 18px'>Novo Cartório</span></a>
                                         </div>
                                         <div>
-                                            <div style='width: 80px;'>
+                                            <div style='width: 60px;'>
                                                 <i class="far fa-list-alt fa-2x"></i>
                                             </div>
-                                            <div th:switch="${cartorios}">
-                                                <a href="/cartorios/list"><span style='font-size: 18px'>Cartórios</span></a>
+                                            <a href="/"><span style='font-size: 18px'>Cartórios</span></a>
+                                        </div>
+                                        <div class="">
+                                            <div style='width: 60px;'>
+                                                <i class="far fa-list-alt fa-2x"></i>
                                             </div>
+                                            <a href="/pedidos"><span style='font-size: 18px'>Pedidos</span></a>
                                         </div>
                                     </div>
                                 </div>

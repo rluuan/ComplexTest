@@ -15,6 +15,19 @@ public class Certidoes {
     @NotNull
     private String nome;
 
+    public Cartorio getCartorio() {
+        return cartorio;
+    }
+
+    public void setCartorio(Cartorio cartorio) {
+        this.cartorio = cartorio;
+    }
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name="cartorioId", nullable=false)
+    private Cartorio cartorio;
+
     public long getId() {
         return id;
     }

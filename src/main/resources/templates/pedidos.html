@@ -208,13 +208,13 @@
                                             </div>
                                             <a href="/cartorios/edit"><span style='font-size: 18px'>Novo Cartório</span></a>
                                         </div>
-                                        <div class="Active">
+                                        <div class="">
                                             <div style='width: 60px;'>
                                                 <i class="far fa-list-alt fa-2x"></i>
                                             </div>
                                             <a href="/"><span style='font-size: 18px'>Cartórios</span></a>
                                         </div>
-                                        <div class="">
+                                        <div class="Active">
                                             <div style='width: 60px;'>
                                                 <i class="far fa-list-alt fa-2x"></i>
                                             </div>
@@ -226,30 +226,31 @@
                         </div>
                     </div>
                 </div> </div>
-                <div class='col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10' style='padding: 0px !important; margin: 0px !important; min-height: 0px !important; background: #fcf7f7;'>
-                    <div class='Content_General'>
-                        <div class="hFlex layout vertical" style="width: 100%">
-                            <div>Shopping de Documentos / Pedidos </div>
-                            <div class="flex-1">
-                                <div class="hFlex layout vertical">
-                                    <div class="Heading_1" style="margin-top: 20px"> Lista de Cartórios</div>
-                                    <div class="row" style="margin-top: 30px;">
-                                        <div class="col-12 col-md-10 col-12 col-lg-10">
-                                            <div style="width: 90%"><input type="text" placeholder="O que voce procura" style="border-color: transparent;border-bottom: 1px solid #ddd;width: 100%; background: #fcf7f7;"></div>
-                                        </div>
-                                        <div class="col-12 col-md-2 col-12 col-lg-2">
+            <div class='col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10' style='padding: 0px !important; margin: 0px !important; min-height: 0px !important; background: #fcf7f7;'>
+                <div class='Content_General'>
+                    <div class="hFlex layout vertical" style="width: 100%">
+                        <div>Shopping de Documentos / Pedidos </div>
+                        <div class="flex-1">
+                            <div class="hFlex layout vertical">
+                                <div class="Heading_1" style="margin-top: 20px"> Lista de Cartórios</div>
+                                <div class="row" style="margin-top: 30px;">
+                                    <div class="col-12 col-md-10 col-12 col-lg-10">
+                                        <div style="width: 90%"><input type="text" placeholder="O que voce procura" style="border-color: transparent;border-bottom: 1px solid #ddd;width: 100%; background: #fcf7f7;"></div>
+                                    </div>
+                                    <div class="col-12 col-md-2 col-12 col-lg-2">
+                                        <div>
                                             <div>
-                                                <div>
-                                                    <div>mais recente</div>
-                                                    <div>mais antigo</div>
-                                                </div>
+                                                <div>mais recente</div>
+                                                <div>mais antigo</div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div th:switch="${cartorios}" class="container my-5">
                                     <div th:each="cartorio : ${cartorios}">
                                         <div class="row hFlex layout center List_Wrapper" style="margin-top: 20px; margin-left: 0px !important; margin-right: 0px !important;">
                                             <div class="col-md-8 col-12 col-sm-12 col-lg-8" style="font-weight: bold;">
-                                                <a th:href="@{/cartorios/emitirCertidao/{cartorioId}(cartorioId=${cartorio.id})}"><span th:text="${cartorio.nome}"></span></a>
+                                                <a href="/cartorios/home"><span th:text="${cartorio.nome}"></span></a>
                                             </div>
                                             <div class="col-md-2 col-12 col-sm-12 col-lg-2"><span th:text="${cartorio.bairro}"></span></div>
                                             <div class="col-md-2 col-12 col-sm-12 col-lg-2"><span th:text="${cartorio.rua}"></span></div>
@@ -263,6 +264,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>
