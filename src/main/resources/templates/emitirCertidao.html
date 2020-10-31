@@ -239,11 +239,11 @@
                             <h3>Pedido para uma certidão</h3>
 
 
-                            <form action="#" th:action="@{/certidoes/adicionar/{id}(id=${1})}" th:object="${certidoes}" method="post">
+                            <form action="#" th:action="@{/certidoes/adicionar/${cartorioId}}" th:object="${certidoes}" method="post">
                                 <select th:field="*{nome}" style="margin-top: 20px;">
-                                    <option th:value="'1'" th:text="'Nascimento'"></option>
-                                    <option th:value="'2'" th:text="'Casamento'"></option>
-                                    <option th:value="'3'" th:text="'Óbito'"></option>
+                                    <option th:value="'Nascimento'" th:text="'Nascimento'"></option>
+                                    <option th:value="'Casamento'" th:text="'Casamento'"></option>
+                                    <option th:value="'Óbito'" th:text="'Óbito'"></option>
                                 </select>
                                 <div style="margin-top: 20px;">
                                     <button>Salvar</button>

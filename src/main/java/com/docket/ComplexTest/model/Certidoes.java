@@ -28,6 +28,16 @@ public class Certidoes {
     @JoinColumn(name="cartorioId", nullable=false)
     private Cartorio cartorio;
 
+    private long externalCartorioId;
+
+    public long getExternalCartorioId() {
+        return externalCartorioId;
+    }
+
+    public void setExternalCartorioId(long externalCartorioId) {
+        this.externalCartorioId = externalCartorioId;
+    }
+
     public long getId() {
         return id;
     }
