@@ -8,4 +8,5 @@ import java.util.List;
 public interface CertidoesRepository extends JpaRepository<Certidoes, Long> {
 
     List<Certidoes> findByNome(String nome);
+    List<Certidoes> findByCartorioId(long id);
 }

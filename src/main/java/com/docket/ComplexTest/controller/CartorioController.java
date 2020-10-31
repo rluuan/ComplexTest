@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/")
 public class CartorioController {
@@ -28,9 +30,39 @@ public class CartorioController {
 
     @PostMapping("cartorios/adicionar")
     public String adicionarCartorio(Cartorio cartorio, BindingResult result) {
-
+        if (cartorio.getNome() == "") {
+            return "redirect:/";
+        }
         repository.save(cartorio);
         return "redirect:/";
+    }
+    @GetMapping("cartorios/excluir/{id}")
+    public String excluirCartorio(@PathVariable("id") long id, Model model) {
+        Cartorio cartorio = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Cartorio não encontrado"));
+        List<Certidoes> certidoes = certidoesRepository.findByCartorioId(id);
+        certidoesRepository.deleteAll(certidoes);
+        repository.delete(cartorio);
+        model.addAttribute("cartorios", repository.findAll());
+        return "index";
+    }
+    @GetMapping("cartorios/edit/{id}")
+    public String editarCartorio(@PathVariable("id") long id, Model model) {
+        Cartorio cartorio = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Cartorio não encontrado"));
+        model.addAttribute("cartorio", cartorio);
+        return "editarCartorio";
+    }
+    @PostMapping("cartorios/updateData/{id}")
+    public String updateCartorio(@PathVariable("id") long id,Cartorio cartorio, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            cartorio.setId(id);
+            return "editarCartorio";
+        }
+        cartorio.setId(id);
+        repository.save(cartorio);
+        model.addAttribute("cartorios", repository.findAll());
+        return "/index";
     }
 
     @GetMapping("/")
@@ -50,6 +82,9 @@ public class CartorioController {
     @PostMapping("certidoes/adicionar")
     public String adicionarCertidao(Certidoes certidoes, BindingResult result) {
         Cartorio cartorio = this.repository.findById(certidoes.getExternalCartorioId()).get();
+        if (certidoes.getNome() == "") {
+            return "redirect:/emitirCertidao";
+        }
         certidoes.setCartorio(cartorio);
         this.certidoesRepository.save(certidoes);
         return "redirect:/pedidos";

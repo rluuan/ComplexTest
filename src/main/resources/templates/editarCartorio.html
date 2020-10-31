@@ -18,7 +18,7 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <title>Emitir Certidao</title>
+    <title>Editar Cartorio</title>
 </head>
 <style>
     html { box-sizing: border-box; }
@@ -133,7 +133,9 @@
         border-color: transparent;
         border-bottom: 1px solid #ddd;
         width: 100%;
-        background: #fcf7f7;
+    }
+    input.middle:focus {
+        outline-width: 0;
     }
 </style>
 <script>
@@ -234,20 +236,25 @@
                 </div> </div>
             <div class='col-12 col-sm-12 col-md-9 col-lg-9 col-xl-10' style='padding: 0px !important; margin: 0px !important; min-height: 0px !important; background: #fcf7f7;'>
                 <div class='Content_General'>
-                    <div style="border: 1px solid #ddd; padding: 20px; margin-top: 20px; width: 50%" class="hFlex layout vertical">
+                    <div style="border: 1px solid #ddd; padding: 20px; margin-top: 20px; width: 50%; background: #fff;" class="hFlex layout vertical">
                         <div class="hFlex layout vertical">
-                            <h3>Pedido para uma certidão</h3>
+                            <h3>Novo cartório</h3>
+                            <form action="#" th:action="@{/cartorios/updateData/{id}(id=${cartorio.id})}" th:object="${cartorio}" method="post">
+                                <div style="margin-top: 20px">
+                                    <input placeholder="Insira o nome do cartorio" th:field="*{nome}" id="nome" class="Input_Theme form-control">
+                                </div>
 
-                            <form action="#" method="post" th:action="@{/certidoes/adicionar}" th:object="${certidoes}">
-                                <input type="hidden" th:value="${cartorioId}" name="externalCartorioId" />
-
-                                <select th:field="*{nome}" style="margin-top: 20px;" class="custom-select mr-sm-2">
-                                    <option th:value="'Nascimento'" th:text="'Nascimento'"></option>
-                                    <option th:value="'Casamento'" th:text="'Casamento'"></option>
-                                    <option th:value="'Óbito'" th:text="'Óbito'"></option>
-                                </select>
-                                <div style="margin-top: 20px;">
-                                    <button class="btn btn-info">Salvar</button>
+                                <div style="margin-top: 40px">
+                                    <input type="text" placeholder="Nome do bairro" th:field="*{bairro}" id="bairro" class="Input_Theme form-control">
+                                </div>
+                                <div style="margin-top: 10px">
+                                    <input type="number" placeholder="Numero" th:field="*{numero}" id="numero" class="Input_Theme form-control">
+                                </div>
+                                <div style="margin-top: 10px">
+                                    <input type="text" placeholder="Nome da rua" th:field="*{rua}" id="rua" class="Input_Theme form-control">
+                                </div>
+                                <div style="margin-top: 20px;" >
+                                    <button class="btn btn-info">Editar</button>
                                 </div>
                             </form>
                         </div>

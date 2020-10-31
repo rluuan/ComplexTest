@@ -18,7 +18,7 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <title>Orders</title>
+    <title>Lista de Pedidos</title>
 </head>
 <style>
     html { box-sizing: border-box; }
@@ -236,11 +236,11 @@
 
                                 <div th:each="certidao : ${certidoes}">
                                     <div class="row hFlex layout center List_Wrapper" style="margin-top: 20px; margin-left: 0px !important; margin-right: 0px !important;">
-                                        <div class="col-md-8 col-12 col-sm-12 col-lg-8" style="font-weight: bold;">
+                                        <div class="col-md-6 col-12 col-sm-12 col-lg-6" style="font-weight: bold;">
                                             Id Pedido: <span th:text="${certidao.id}"></span>
                                         </div>
-                                        <div class="col-md-2 col-12 col-sm-12 col-lg-2">Id do Cartorio: <span th:text="${certidao.externalCartorioId}"></span></div>
-                                        <div class="col-md-2 col-12 col-sm-12 col-lg-2">Solicitação de certidão: <span th:text="${certidao.nome}"></span></div>
+                                        <div class="col-md-3 col-12 col-sm-12 col-lg-3">Id do Cartorio: <span th:text="${certidao.externalCartorioId}"></span></div>
+                                        <div class="col-md-3 col-12 col-sm-12 col-lg-3">Solicitação de certidão: <span th:text="${certidao.nome}"></span></div>
                                     </div>
                                 </div>
                             </div>
