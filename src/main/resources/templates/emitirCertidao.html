@@ -238,8 +238,9 @@
                         <div class="hFlex layout vertical">
                             <h3>Pedido para uma certidão</h3>
 
+                            <form action="#" method="post" th:action="@{/certidoes/adicionar}" th:object="${certidoes}">
+                                <input type="hidden" th:value="${cartorioId}" name="externalCartorioId" />
 
-                            <form action="#" th:action="@{/certidoes/adicionar/${cartorioId}}" th:object="${certidoes}" method="post">
                                 <select th:field="*{nome}" style="margin-top: 20px;">
                                     <option th:value="'Nascimento'" th:text="'Nascimento'"></option>
                                     <option th:value="'Casamento'" th:text="'Casamento'"></option>

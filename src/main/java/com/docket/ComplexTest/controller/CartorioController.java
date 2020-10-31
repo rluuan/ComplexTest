@@ -43,19 +43,21 @@ public class CartorioController {
     public String certidoesEmitir(@PathVariable("id") long id, Model model) {
         Certidoes certidoes = new Certidoes();
         model.addAttribute("certidoes", certidoes);
+        model.addAttribute("cartorioId", id);
         return "emitirCertidao";
     }
 
     @PostMapping("certidoes/adicionar")
-    public String adicionarCertidao(@RequestParam("cartorioId") long id, Certidoes certidoes, BindingResult result) {
-        Cartorio cartorio = this.repository.findById(id).get();
+    public String adicionarCertidao(Certidoes certidoes, BindingResult result) {
+        Cartorio cartorio = this.repository.findById(certidoes.getExternalCartorioId()).get();
         certidoes.setCartorio(cartorio);
         this.certidoesRepository.save(certidoes);
-        return "redirect:/";
+        return "redirect:/pedidos";
     }
 
     @GetMapping("pedidos")
     public String showPedidos(Model model) {
+        model.addAttribute("certidoes", certidoesRepository.findAll());
         return "pedidos";
     }
 }

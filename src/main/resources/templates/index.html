@@ -233,19 +233,7 @@
                             <div class="flex-1">
                                 <div class="hFlex layout vertical">
                                     <div class="Heading_1" style="margin-top: 20px"> Lista de Cartórios</div>
-                                    <div class="row" style="margin-top: 30px;">
-                                        <div class="col-12 col-md-10 col-12 col-lg-10">
-                                            <div style="width: 90%"><input type="text" placeholder="O que voce procura" style="border-color: transparent;border-bottom: 1px solid #ddd;width: 100%; background: #fcf7f7;"></div>
-                                        </div>
-                                        <div class="col-12 col-md-2 col-12 col-lg-2">
-                                            <div>
-                                                <div>
-                                                    <div>mais recente</div>
-                                                    <div>mais antigo</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div th:each="cartorio : ${cartorios}">
                                         <div class="row hFlex layout center List_Wrapper" style="margin-top: 20px; margin-left: 0px !important; margin-right: 0px !important;">
                                             <div class="col-md-8 col-12 col-sm-12 col-lg-8" style="font-weight: bold;">

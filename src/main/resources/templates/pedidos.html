@@ -233,28 +233,14 @@
                         <div class="flex-1">
                             <div class="hFlex layout vertical">
                                 <div class="Heading_1" style="margin-top: 20px"> Lista de Cartórios</div>
-                                <div class="row" style="margin-top: 30px;">
-                                    <div class="col-12 col-md-10 col-12 col-lg-10">
-                                        <div style="width: 90%"><input type="text" placeholder="O que voce procura" style="border-color: transparent;border-bottom: 1px solid #ddd;width: 100%; background: #fcf7f7;"></div>
-                                    </div>
-                                    <div class="col-12 col-md-2 col-12 col-lg-2">
-                                        <div>
-                                            <div>
-                                                <div>mais recente</div>
-                                                <div>mais antigo</div>
-                                            </div>
+
+                                <div th:each="certidao : ${certidoes}">
+                                    <div class="row hFlex layout center List_Wrapper" style="margin-top: 20px; margin-left: 0px !important; margin-right: 0px !important;">
+                                        <div class="col-md-8 col-12 col-sm-12 col-lg-8" style="font-weight: bold;">
+                                            Id Pedido: <span th:text="${certidao.id}"></span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div th:switch="${cartorios}" class="container my-5">
-                                    <div th:each="cartorio : ${cartorios}">
-                                        <div class="row hFlex layout center List_Wrapper" style="margin-top: 20px; margin-left: 0px !important; margin-right: 0px !important;">
-                                            <div class="col-md-8 col-12 col-sm-12 col-lg-8" style="font-weight: bold;">
-                                                <a href="/cartorios/home"><span th:text="${cartorio.nome}"></span></a>
-                                            </div>
-                                            <div class="col-md-2 col-12 col-sm-12 col-lg-2"><span th:text="${cartorio.bairro}"></span></div>
-                                            <div class="col-md-2 col-12 col-sm-12 col-lg-2"><span th:text="${cartorio.rua}"></span></div>
-                                        </div>
+                                        <div class="col-md-2 col-12 col-sm-12 col-lg-2">Id do Cartorio: <span th:text="${certidao.externalCartorioId}"></span></div>
+                                        <div class="col-md-2 col-12 col-sm-12 col-lg-2">Solicitação de certidão: <span th:text="${certidao.nome}"></span></div>
                                     </div>
                                 </div>
                             </div>
